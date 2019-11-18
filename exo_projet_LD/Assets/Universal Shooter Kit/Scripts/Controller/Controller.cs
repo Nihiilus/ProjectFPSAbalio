@@ -898,14 +898,15 @@ namespace GercStudio.USK.Scripts
 				if (OnFloor && !isJump)
 				{
 					CurrentSpeed = MoveDirection == Direction.Stationary
-						? Mathf.Lerp(CurrentSpeed, MoveSpeed(), 0.5f * Time.deltaTime)
-						: Mathf.Lerp(CurrentSpeed, MoveSpeed(), 3 * Time.deltaTime);
+						? Mathf.Lerp(CurrentSpeed, MoveSpeed(), 6f * Time.deltaTime)
+						: Mathf.Lerp(CurrentSpeed, MoveSpeed(), 10f * Time.deltaTime);
+                        
 				}
 				else
 				{
 					if (isSprint)
-						CurrentSpeed -= 3 * Time.deltaTime;
-					else CurrentSpeed -= 1 * Time.deltaTime;
+						CurrentSpeed -= 10f * Time.deltaTime;
+					else CurrentSpeed -= 6f * Time.deltaTime; 
 				}
 
 				if (CurrentSpeed < 0)
@@ -1639,7 +1640,7 @@ namespace GercStudio.USK.Scripts
 					moveSpeed = ChoiceSpeed(NormBackwardSpeed, RunBackwardSpeed, CrouchBackwardSpeed);
 					break;
 			}
-			return moveSpeed;
+			return moveSpeed * Time.deltaTime * 100f;
 		}
 
 		float ChoiceSpeed(float norm, float run, float crouch)
