@@ -2259,7 +2259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stop_AttackDistance: 2.1
-  DistanceToSee: 15.9
+  DistanceToSee: 15
   EnemyMovement: 2
   targets: []
   WayPoints: []
