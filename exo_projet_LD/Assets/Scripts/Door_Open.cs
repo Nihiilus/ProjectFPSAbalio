@@ -14,7 +14,7 @@ public class Door_Open : MonoBehaviour
         if (!isOpened)
         {
             isOpened = true;
-            Door_Dank_A_snaps010.transform.Rotate ( new Vector3 (0,-76,0) );
+            Door_Dank_A_snaps010.transform.Rotate ( new Vector3 (0,-105,0) );
         }
         
     }
