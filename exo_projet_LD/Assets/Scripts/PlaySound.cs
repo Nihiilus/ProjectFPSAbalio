@@ -17,12 +17,15 @@ public class PlaySound : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider col)
     {
-        if (!alreadyPlayed)
-        {
-            audio.PlayOneShot(SoundToPlay, Volume);
-            alreadyPlayed = true;
-        }
+		if (col.transform.tag == "Player")
+		{
+			if (!alreadyPlayed)
+			{
+				audio.PlayOneShot(SoundToPlay, Volume);
+				alreadyPlayed = true;
+			}
+		}
     }
 }
