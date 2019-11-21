@@ -2,49 +2,76 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ReadingNotes : MonoBehaviour
 {
     public GameObject IconReading;
     public GameObject PageReading;
+    public TMP_Text TMPText;
+    [TextArea(2,9)]
+    public string textPage1;
+    [TextArea(2, 9)]
+    public string textPage2;
+    [TextArea(2, 9)]
+    public string textPage3;
+
     bool toggleBool = false;
+    bool canOpen; 
     public AudioSource audioSource;
 
+    private string triggerName;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-           
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Notes"))
+        {
             IconReading.SetActive(true);
-
+            canOpen = true;
+            triggerName = other.gameObject.name;
+        }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
-        if (Input.GetKeyUp("e"))
+        if (canOpen && Input.GetKeyUp("e"))
         {
             toggleBool = !toggleBool;
-            PageReading.SetActive(toggleBool);
             audioSource.Play();
+            PageReading.SetActive(toggleBool);
+
+            switch (triggerName)
+            {
+                case "page1":
+                    {
+                        TMPText.text = textPage1;
+                        break;
+                    }
+                case "page2":
+                    {
+                        TMPText.text = textPage2;
+                        break;
+                    }
+                case "page3":
+                    {
+                        TMPText.text = textPage3;
+                        break;
+                    }
+            }
+
         }
             
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Notes"))
+        {
             IconReading.SetActive(false);
-        PageReading.SetActive(false);
+            canOpen = false;
+            PageReading.SetActive(false);
+        }
+        
 
     }
 }
